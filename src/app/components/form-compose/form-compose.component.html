@@ -1,0 +1,26 @@
+<form [formGroup]="formGroup">
+    <ng-container
+        *ngFor="let control of formControlConfigs"
+    >
+        <div
+            class="form-group"
+            [ngSwitch]="control.controlType">
+            <app-textbox
+                *ngSwitchCase="'textbox'"
+                [key]="control.key"
+                [label]="control.label"
+                [group]="formGroup"
+                [inputType]="control.inputType"
+            >
+            </app-textbox>
+
+            <app-chips
+                *ngSwitchCase="'chips'"
+                [key]="control.key"
+                [label]="control.label"
+                [group]="formGroup"
+            >
+            </app-chips>
+        </div>
+    </ng-container>
+</form>
