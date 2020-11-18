@@ -1,6 +1,9 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { MatDialogRef } from '@angular/material/dialog';
+import { Store } from '@ngrx/store';
+import { FriendState } from './state/friend.reducer';
+import * as FriendActions from './state/friend.actions';
 
 export interface Person {
   name?: string;
@@ -11,13 +14,16 @@ export interface Person {
 
 @Component({
   selector: 'app-add-person',
-  templateUrl: './add-person.component.html',
-  styleUrls: ['./add-person.component.scss']
+  templateUrl: './add-friend.component.html',
+  styleUrls: ['./add-friend.component.scss']
 })
-export class AddPersonComponent implements OnInit {
+export class AddFriendComponent implements OnInit {
   enteredItemList: Person[] = [];
 
-  constructor(public dialogRef: MatDialogRef<AddPersonComponent>) { }
+  constructor(
+    public dialogRef: MatDialogRef<AddFriendComponent>,
+    private store: Store<FriendState>,
+  ) { }
 
   ngOnInit(): void {
   }
@@ -29,6 +35,11 @@ export class AddPersonComponent implements OnInit {
     }
 
     this.enteredItemList.push(formGroup.value);
+    this.store.dispatch(
+      FriendActions.addFriend(
+        {friend: formGroup.value as Person}
+      )
+    );
     formGroup.reset();
   }
 

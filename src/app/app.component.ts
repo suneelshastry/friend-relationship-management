@@ -1,8 +1,7 @@
 import { Component } from '@angular/core';
-import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { MatDialog } from '@angular/material/dialog';
-import { AddPersonComponent } from './add-person/add-person.component';
-
+import { AddFriendComponent } from './add-friend/add-friend.component';
+import { Store } from '@ngrx/store';
 export interface Person {
   name?: string;
   friends?: string[];
@@ -17,9 +16,12 @@ export interface Person {
 export class AppComponent {
   title = 'Friend-management';
 
-  constructor(public dialog: MatDialog) { }
+  constructor(
+    public dialog: MatDialog,
+    public store: Store<any>,
+  ) { }
 
   open(): void {
-    this.dialog.open(AddPersonComponent);
+    this.dialog.open(AddFriendComponent);
   }
 }

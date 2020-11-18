@@ -33,10 +33,7 @@ export class FormComposeComponent implements OnInit {
         controlType: 'chips',
         label: 'Friends',
         key: 'friends',
-        value: [
-          'rama',
-          'seetha'
-        ],
+        value: [ ],
         order: 2,
         validators: [
           Validators.required
