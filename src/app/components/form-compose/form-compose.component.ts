@@ -6,7 +6,7 @@ import { FormComposeService } from './form-compose.service';
 @Component({
   selector: 'app-form-compose',
   templateUrl: './form-compose.component.html',
-  styleUrls: ['./form-compose.component.scss']
+  styleUrls: ['./form-compose.component.scss'],
 })
 export class FormComposeComponent implements OnInit {
   @Input() formControlConfigs: FormControlConfig[];

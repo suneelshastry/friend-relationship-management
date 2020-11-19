@@ -3,7 +3,8 @@ import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { StoreModule } from '@ngrx/store';
-import { FriendArchiveModule } from '@friend-archive/friend-archive.module';
+import { AppRoutingModule } from './app-routing.module';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -11,7 +12,7 @@ import { FriendArchiveModule } from '@friend-archive/friend-archive.module';
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    FriendArchiveModule,
+    AppRoutingModule,
     StoreModule.forRoot({}, {}),
   ],
   providers: [],
