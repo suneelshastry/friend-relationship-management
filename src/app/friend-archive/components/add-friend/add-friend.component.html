@@ -1,0 +1,19 @@
+<div class="outer">
+    <h2>Add person details</h2>
+    <div>
+        <app-form-compose 
+            #addFriend
+            [formControlConfigs]="formControlConfig$ | async"
+        ></app-form-compose>
+    </div>
+    <div>
+        <button 
+            mat-button
+            (click)="addPerson(addFriend.formGroup)"
+        >Add person</button>
+        <button
+            mat-button
+            (click)="addFriend.formGroup.reset()"
+        >Reset</button>
+    </div>
+</div>

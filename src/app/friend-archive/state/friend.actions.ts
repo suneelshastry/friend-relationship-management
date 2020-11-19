@@ -1,5 +1,5 @@
 import { createAction, props } from '@ngrx/store';
-import { Person } from '../add-friend.component';
+import { Person } from '@models';
 
 export const addFriend = createAction(
     '[Add Friend]Add a friend with details',

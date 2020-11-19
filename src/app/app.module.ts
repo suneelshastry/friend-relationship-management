@@ -2,11 +2,8 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import {MatDialogModule} from '@angular/material/dialog';
-import { AddFriendModule } from './add-friend/add-friend.module';
 import { StoreModule } from '@ngrx/store';
-import { NetworkChartModule } from './components/network-chart/network-chart.module';
-
+import { FriendArchiveModule } from '@friend-archive/friend-archive.module';
 @NgModule({
   declarations: [
     AppComponent,
@@ -14,9 +11,7 @@ import { NetworkChartModule } from './components/network-chart/network-chart.mod
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
-    MatDialogModule,
-    AddFriendModule,
-    NetworkChartModule,
+    FriendArchiveModule,
     StoreModule.forRoot({}, {}),
   ],
   providers: [],

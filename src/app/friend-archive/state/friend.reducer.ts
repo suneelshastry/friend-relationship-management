@@ -1,7 +1,11 @@
-import { Person } from '../add-friend.component';
+import { Person } from '@models';
 import * as AppState from '../../state/app.reducer';
-import { createReducer, on, createFeatureSelector, createSelector } from '@ngrx/store';
 import * as FriendActions from './friend.actions';
+import {
+    createReducer, on,
+    createSelector,
+    createFeatureSelector,
+} from '@ngrx/store';
 
 export interface State extends AppState.State {
     friends: FriendState;
@@ -22,13 +26,17 @@ export const FriendReducer = createReducer(
             ...state,
             friends: [
                 ...state.friends,
-                action.friend
+                {
+                    ...action.friend,
+                    id: state.friends.length
+                }
             ],
         };
     } )
 );
 
-const getFriendStateSelector = createFeatureSelector<FriendState>('friends');
+const getFriendStateSelector =
+    createFeatureSelector<FriendState>('friends');
 
 export const getFriendsList = createSelector(
     getFriendStateSelector,

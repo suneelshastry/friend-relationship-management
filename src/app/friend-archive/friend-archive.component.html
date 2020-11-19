@@ -1,0 +1,10 @@
+<div class="container">
+    <div class="form">
+        <app-add-friend></app-add-friend>
+    </div>
+    <div class="chart">
+        <app-network-chart
+            [data]="chartData$ | async"
+        ></app-network-chart>
+    </div>
+</div>

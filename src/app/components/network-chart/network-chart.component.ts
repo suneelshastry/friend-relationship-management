@@ -120,11 +120,12 @@ export class NetworkChartComponent implements
 
   // Todo refactor this method
   updateData(): void {
+    const {nodes = [], links = []} = this.data || {};
     const oldNodeData: Map<number, NetworkNode> = new Map(
       this.node.data()
         .map((d: NetworkNode) => [d.id, d])
     );
-    const mergedNodes = this.data.nodes
+    const mergedNodes = nodes
       .map(d => {
         const old = oldNodeData.get(d.id);
         return {
@@ -134,7 +135,7 @@ export class NetworkChartComponent implements
       }
     );
 
-    const mergedLink = this.data.links.map(d => {
+    const mergedLink = links.map(d => {
       return {...d};
     });
 

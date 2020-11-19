@@ -15,6 +15,11 @@
     "lib": [
       "es2018",
       "dom"
-    ]
+    ],
+    "paths": {
+      "@models": ["src/app/models/index.ts"],
+      "@friend-archive/*": ["src/app/friend-archive/*"],
+      "@components": ["src/app/components/index.ts"]
+    }
   }
 }

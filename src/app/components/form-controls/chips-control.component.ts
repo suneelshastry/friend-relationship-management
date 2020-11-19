@@ -67,8 +67,13 @@ export class FormChipsComponent implements OnInit {
         const value = event.value;
 
         if ((value || '').trim()) {
-          this.formControl.value.push(value.trim());
-          this.formControl.updateValueAndValidity();
+            // TODO Remvoe this workaround in future
+            if (this.formControl.value === null) {
+                this.formControl.setValue([]);
+                this.formControl.updateValueAndValidity();
+            }
+            this.formControl.value.push(value.trim());
+            this.formControl.updateValueAndValidity();
         }
 
         if (input) {

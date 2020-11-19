@@ -8,6 +8,7 @@ import {MatIconModule} from '@angular/material/icon';
 import { FormChipsComponent } from './chips-control.component';
 import { FormTextboxComponent } from './textbox-control.component';
 import { CommonModule } from '@angular/common';
+import {MatSliderModule} from '@angular/material/slider';
 
 @NgModule({
     imports: [
@@ -18,6 +19,7 @@ import { CommonModule } from '@angular/common';
         MatAutocompleteModule,
         MatChipsModule,
         MatIconModule,
+        MatSliderModule,
     ],
     declarations: [
         FormTextboxComponent,

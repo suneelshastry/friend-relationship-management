@@ -9,8 +9,8 @@ export interface NetworkLink {
 }
 
 export interface NetworkChartData {
-    nodes: NetworkNode[];
-    links: NetworkLink[];
+    nodes?: NetworkNode[];
+    links?: NetworkLink[];
 }
 
 export interface ChartLayout {
