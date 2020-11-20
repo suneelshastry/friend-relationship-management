@@ -15,10 +15,12 @@
     <span class="spacer"></span>
     <button
         mat-button color="primary"
+        class="reset"
         (click)="form.formGroup.reset()"
     >Reset</button>
     <button 
         (click)="addFriend(form.formGroup)"
         mat-flat-button color="primary"
+        class="add-friend"
     >Add friend</button>
 </mat-toolbar>

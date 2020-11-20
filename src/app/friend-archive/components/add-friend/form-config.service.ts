@@ -38,7 +38,7 @@ export class FormConfigService {
         controlType: FormControlTypes.Inputbox,
         label: 'Age',
         key: 'age',
-        value: 0,
+        value: '',
         order: 3,
         inputType: 'number',
         validators: [
@@ -49,7 +49,7 @@ export class FormConfigService {
         controlType: FormControlTypes.Inputbox,
         label: 'Weight',
         key: 'weight',
-        value: 0,
+        value: '',
         order: 4,
         inputType: 'number',
         validators: [

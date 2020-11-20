@@ -13,6 +13,6 @@
   ],
   "include": [
     "src/**/*.spec.ts",
-    "src/**/*.d.ts"
+    "src/**/*.d.ts", "src/tests/e2e/integration/friends-add.spec.js"
   ]
 }

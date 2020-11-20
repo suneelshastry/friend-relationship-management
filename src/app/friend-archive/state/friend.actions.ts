@@ -2,6 +2,7 @@ import { Person } from '@models';
 import { Action } from '@ngrx/store';
 
 export enum FriendActionTypes {
+    LoadFriendsList = '[Load Friends] Load friends list',
     AddFriend = '[Add Friend]Add a friend with details',
     AddFriendSuccess = '[Add Friend]Add friend completed',
     AddFriendFailure = '[Add Friend]Add friend failed with error',

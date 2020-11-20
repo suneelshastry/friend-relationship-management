@@ -14,6 +14,7 @@ import { FormGroup } from '@angular/forms';
                 matInput
                 [formControlName]="key"
                 [type]="inputType"
+                [class]="key"
             >
         </mat-form-field>
     `,

@@ -5,22 +5,24 @@
         <div
             class="form-group"
             [ngSwitch]="control?.controlType">
-            <app-textbox
-                *ngSwitchCase="formControlTypes.Inputbox"
-                [key]="control?.key"
-                [label]="control?.label"
-                [group]="formGroup"
-                [inputType]="control?.inputType"
-            >
-            </app-textbox>
-
-            <app-chips
-                *ngSwitchCase="formControlTypes.Chips"
-                [key]="control?.key"
-                [label]="control?.label"
-                [group]="formGroup"
-            >
-            </app-chips>
+            <div>
+                    <app-textbox
+                    *ngSwitchCase="formControlTypes.Inputbox"
+                    [key]="control?.key"
+                    [label]="control?.label"
+                    [group]="formGroup"
+                    [inputType]="control?.inputType"
+                >
+                </app-textbox>
+            
+                <app-chips
+                    *ngSwitchCase="formControlTypes.Chips"
+                    [key]="control?.key"
+                    [label]="control?.label"
+                    [group]="formGroup"
+                >
+                </app-chips>
+            </div>
         </div>
     </ng-container>
 </form>

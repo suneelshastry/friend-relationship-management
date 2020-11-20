@@ -38,7 +38,7 @@ export function friendReducer(
                 ...state,
                 error: action.payload.error,
             };
-            default: return state;
+        default: return state;
     }
 }
 
