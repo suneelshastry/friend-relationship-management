@@ -9,7 +9,8 @@
     "build": "ng build",
     "test": "ng test",
     "lint": "ng lint",
-    "e2e": "ng e2e"
+    "e2e": "ng e2e",
+    "compodoc": "npx compodoc -p tsconfig.app.json src"
   },
   "private": true,
   "dependencies": {
@@ -33,7 +34,6 @@
     "@angular-devkit/build-angular": "~0.1000.8",
     "@angular/cli": "~10.0.8",
     "@angular/compiler-cli": "~10.0.14",
-    "@briebug/cypress-schematic": "^4.3.0",
     "@cypress/webpack-preprocessor": "5.4.11",
     "@types/jasmine": "~3.5.0",
     "@types/jasminewd2": "~2.0.3",
