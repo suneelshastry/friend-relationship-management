@@ -1,10 +1,11 @@
 import { TestBed } from '@angular/core/testing';
 import { MapService } from './map.service';
-import {  sampleChartData,
+import {
+    sampleChartData,
     sampleFriendFormData,
 } from '@constants';
 
-describe('FormConfigService', () => {
+describe('MapService', () => {
   let service: MapService;
 
   beforeEach(() => {

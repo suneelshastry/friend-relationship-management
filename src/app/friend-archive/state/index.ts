@@ -1,7 +1,8 @@
 export {
     addFriendFailure,
     addFriend,
-    addFriendSuccess
+    addFriendSuccess,
+    loadFriends,
 } from './friend.actions';
 export {
     State,

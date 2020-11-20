@@ -1,12 +1,13 @@
 import {Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { FriendState, addFriend, getFriendsList } from '@friend-archive/state';
+import { FriendState, addFriend, getFriendsList, loadFriends } from '@friend-archive/state';
 import { Person } from '@models';
 import { FormConfigService } from './form-config.service';
 import { FormComposeComponent, FormControlConfig } from '@components';
 import { Observable, Subject } from 'rxjs';
 import { takeUntil } from 'rxjs/operators';
+import { sampleFriendFormData } from '@constants';
 
 @Component({
   selector: 'app-add-friend',
@@ -52,6 +53,12 @@ export class AddFriendComponent implements OnInit, OnDestroy {
       addFriend(
         {friend: formGroup.value as Person}
       )
+    );
+  }
+
+  loadSeedData(): void {
+    this.store.dispatch(
+      loadFriends({friends: sampleFriendFormData}),
     );
   }
 

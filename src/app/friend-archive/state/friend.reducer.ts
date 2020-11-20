@@ -40,6 +40,17 @@ export const friendReducer = createReducer(
                 error: action.error
             };
         }
+    ),
+    on(FriendActions.loadFriends,
+        (state, action): FriendState => {
+            return {
+                ...state,
+                friends: [
+                    ...state.friends,
+                    ...action.friends
+                ]
+            };
+        }
     )
 );
 

@@ -17,6 +17,7 @@ export class FormComposeService {
 
     controlConfigs.forEach((config) => {
       if (keySet.has(config.key)) {
+        // TODO Log error
         throw new Error('One or more form control keys are not unique');
       }
       keySet.add(config.key);

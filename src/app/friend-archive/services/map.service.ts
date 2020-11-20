@@ -5,7 +5,6 @@ import { Observable, of, throwError } from 'rxjs';
 
 @Injectable()
 export class MapService {
-    // TODO add error handling
     mapToNetworkData(friendsList: Person[]): Observable<NetworkChartData> {
         if (!friendsList || friendsList.length === 0) {
             return of({});
@@ -39,6 +38,7 @@ export class MapService {
                 links: relationshipMap
             });
         } catch (err) {
+            // TODO Log error
             throwError(err);
         }
     }

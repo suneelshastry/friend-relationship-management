@@ -1,21 +1,22 @@
 import { NetworkChartData } from '@components';
+import { Person } from '@models';
 
-export const sampleFriendFormData = [
+export const sampleFriendFormData: Person[] = [
     {
-        name: 'chandler',
+        name: 'Charlie Harper',
         friends: [
-            'monica', 'phoebe', 'joey'
+            'Mia', 'Lydia'
         ],
-        age: 30,
-        weight: 86,
+        age: 38,
+        weight: 75,
     },
     {
-        name: 'joey',
+        name: 'Alan Harper',
         friends: [
-            'ross', 'rachel',
+            'Charlie Harper', 'Judith',
         ],
-        age: 30,
-        weight: 86,
+        age: 34,
+        weight: 70,
     },
 ];
 
@@ -23,28 +24,24 @@ export const sampleFriendFormData = [
 export const sampleChartData: NetworkChartData = {
     nodes: [
       {
-          name: 'chandler',
+          name: 'Charlie Harper',
           id: 0,
       },
       {
-          name: 'monica',
+          name: 'Mia',
           id: 1,
       },
       {
-          name: 'phoebe',
+          name: 'Lydia',
           id: 2,
       },
       {
-          name: 'joey',
+          name: 'Alan Harper',
           id: 3,
       },
       {
-          name: 'ross',
+          name: 'Judith',
           id: 4,
-      },
-      {
-          name: 'rachel',
-          id: 5,
       }
     ],
     links: [
@@ -57,16 +54,12 @@ export const sampleChartData: NetworkChartData = {
           target: 2
       },
       {
-          source: 0,
-          target: 3
+          source: 3,
+          target: 0
       },
       {
           source: 3,
           target: 4
       },
-      {
-          source: 3,
-          target: 5
-      }
     ]
 };

@@ -23,7 +23,6 @@ export class FriendArchiveComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
-    // TODO Add error handling
     this.chartData$ = this.store.select(getFriendsList)
     .pipe(
       switchMap(r => this.mapService.mapToNetworkData(r))

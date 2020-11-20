@@ -10,6 +10,7 @@ import {
   forceY,
 } from 'd3-force';
 import { schemeAccent } from 'd3-scale-chromatic';
+import { sampleChartData } from '@constants';
 
 const d3 = {
   select,
@@ -25,56 +26,6 @@ const d3 = {
 describe('NetworkChartComponent', () => {
   let component: NetworkChartComponent;
   let fixture: ComponentFixture<NetworkChartComponent>;
-  const chartData = {
-    nodes: [
-      {
-          name: 'chandler',
-          id: 0,
-      },
-      {
-          name: 'monica',
-          id: 1,
-      },
-      {
-          name: 'phoebe',
-          id: 2,
-      },
-      {
-          name: 'joey',
-          id: 3,
-      },
-      {
-          name: 'ross',
-          id: 4,
-      },
-      {
-          name: 'rachel',
-          id: 5,
-      }
-    ],
-    links: [
-        {
-            source: 0,
-            target: 1
-        },
-        {
-          source: 0,
-          target: 2
-      },
-      {
-          source: 0,
-          target: 3
-      },
-      {
-          source: 3,
-          target: 4
-      },
-      {
-          source: 3,
-          target: 5
-      }
-    ]
-  };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
@@ -125,7 +76,7 @@ describe('NetworkChartComponent', () => {
 
     spyOn(component, 'drawChart');
 
-    component.data = chartData;
+    component.data = sampleChartData;
 
     fixture.detectChanges();
     component.ngAfterViewInit();

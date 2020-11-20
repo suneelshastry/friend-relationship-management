@@ -36,6 +36,7 @@ export class FriendEffects {
                     return (addFriendSuccess({friend: newFriend}));
                 }),
                 catchError((err: Error) => {
+                    // TODO Log error
                     this.showError(err.message);
                     return of(addFriendFailure({error: err.message}));
                 })

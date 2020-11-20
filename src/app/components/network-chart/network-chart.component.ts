@@ -20,7 +20,7 @@ import {
   forceX,
   forceY,
 } from 'd3-force';
-import { schemeAccent } from 'd3-scale-chromatic';
+import { schemePaired } from 'd3-scale-chromatic';
 const d3 = {
   select,
   selectAll,
@@ -30,7 +30,7 @@ const d3 = {
   forceX,
   forceY,
   scaleOrdinal,
-  schemeAccent
+  schemePaired
 };
 
 @Component({
@@ -45,7 +45,7 @@ export class NetworkChartComponent implements
   @Input() chartLayout: ChartLayout;
 
   // TODO add types for all d3 artifacts and variables
-  color = d3.scaleOrdinal(d3.schemeAccent);
+  color = d3.scaleOrdinal(d3.schemePaired);
   @ViewChild('chart')container: ElementRef<any>;
   svgElement;
   link;
