@@ -12,10 +12,15 @@ export class FormComposeService {
   constructor() { }
 
   buildFormGroup(controlConfigs: FormControlConfig[]): FormGroup {
+    const keySet = new Set();
     const group = { };
 
     controlConfigs.forEach((config) => {
-        group[config.key] =
+      if (keySet.has(config.key)) {
+        throw new Error('One or more form control keys are not unique');
+      }
+      keySet.add(config.key);
+      group[config.key] =
             new FormControl(config.value, config.validators);
     });
 

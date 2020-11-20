@@ -6,7 +6,7 @@ import { MatChipInputEvent } from '@angular/material/chips';
 @Component({
     selector: 'app-chips',
     template: `
-        <mat-form-field [formGroup]="group" class="form-element">
+        <mat-form-field [formGroup]="group" class="form-element chips">
             <mat-label>{{label + ' *'}}</mat-label>
             <mat-chip-list #chipList [formControl]="formControl">
                 <mat-chip

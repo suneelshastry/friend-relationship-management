@@ -5,7 +5,7 @@
 <section>
     <div>
         <app-form-compose 
-            #addFriend
+            #form
             [formControlConfigs]="formControlConfig$ | async"
         ></app-form-compose>
     </div>
@@ -15,10 +15,10 @@
     <span class="spacer"></span>
     <button
         mat-button color="primary"
-        (click)="addFriend.formGroup.reset()"
+        (click)="form.formGroup.reset()"
     >Reset</button>
     <button 
-        (click)="addPerson(addFriend.formGroup)"
+        (click)="addFriend(form.formGroup)"
         mat-flat-button color="primary"
-    >Add person</button>
+    >Add friend</button>
 </mat-toolbar>

@@ -42,7 +42,7 @@ export class AddFriendComponent implements OnInit, OnDestroy {
       });
   }
 
-  addPerson(formGroup: FormGroup): void {
+  addFriend(formGroup: FormGroup): void {
     if (formGroup.invalid) {
       formGroup.markAllAsTouched();
       return;

@@ -7,7 +7,7 @@ import { FormGroup } from '@angular/forms';
         <mat-form-field
             appearance="outline"
             [formGroup]="group"
-            class="form-element"
+            class="form-element textbox"
         >
             <mat-label>{{label + ' *'}}</mat-label>
             <input

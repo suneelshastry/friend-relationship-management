@@ -62,7 +62,10 @@ export class NetworkChartComponent implements
   }
 
   drawChartSvg(): void {
-    const {width = 800, height = 800} = this.chartLayout || {};
+    const {
+      width = this.container.nativeElement.clientWidth,
+      height = this.container.nativeElement.clientHeight,
+    } = this.chartLayout || {};
 
     this.svgElement = d3.select(this.container.nativeElement)
     .append('svg')
