@@ -1,4 +1,3 @@
-
 export interface State {
-    userProfile: any;
+  userProfile: any;
 }

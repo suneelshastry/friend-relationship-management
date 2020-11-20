@@ -9,23 +9,21 @@ import { Observable, of, throwError } from 'rxjs';
  * API calls in future.
  */
 export class FriendDataService {
-    friendsRepo: Person[] = [];
+  friendsRepo: Person[] = [];
 
-    getFriends(): Observable<Person[]> {
-        return of(this.friendsRepo);
+  getFriends(): Observable<Person[]> {
+    return of(this.friendsRepo);
+  }
+
+  addNewFriend(friend: Person): Observable<Person | Error> {
+    if (this.friendsRepo.findIndex((i) => i.name === friend.name) > -1) {
+      return throwError(new Error('Friend already exists'));
     }
+    this.friendsRepo.push({
+      ...friend,
+      id: this.friendsRepo.length,
+    });
 
-    addNewFriend(friend: Person): Observable<Person|Error> {
-        if (this.friendsRepo.findIndex(i => i.name === friend.name) > -1) {
-            return throwError(new Error('Friend already exists'));
-        }
-        this.friendsRepo.push(
-            {
-                ...friend,
-                id: this.friendsRepo.length,
-            }
-        );
-
-        return of(friend);
-    }
+    return of(friend);
+  }
 }

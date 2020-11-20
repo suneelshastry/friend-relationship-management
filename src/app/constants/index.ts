@@ -1,4 +1,1 @@
-export {
-    sampleChartData,
-    sampleFriendFormData,
-} from './sample-chart-data';
+export { sampleChartData, sampleFriendFormData } from './sample-chart-data';

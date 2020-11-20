@@ -18,26 +18,20 @@ describe('Add-friend e2e tests', () => {
   it('should not allow to add friend upon incomplete input', () => {
     cy.visit('/');
     FriendWorkflow.clickAddFriendButton();
-    cy.get('form')
-      .should('have.class', 'ng-invalid');
+    cy.get('form').should('have.class', 'ng-invalid');
   });
 
   it('should rest form upon rest button click', () => {
     cy.visit('/');
     FriendWorkflow.addFriendData({
       name: 'Tom',
-      friends: [
-        'july'
-      ],
+      friends: ['july'],
       age: 30,
       weight: 78,
     });
     FriendWorkflow.clickResetButton();
     FriendWorkflow.clickAddFriendButton();
 
-    cy.get('form')
-      .should('have.class', 'ng-invalid');
+    cy.get('form').should('have.class', 'ng-invalid');
   });
 });
-
-

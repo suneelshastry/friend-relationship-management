@@ -1,31 +1,27 @@
 <form [formGroup]="formGroup" class="container">
-    <ng-container
-        *ngFor="let control of formControlConfigs"
-    >
-        <div
-            class="form-group"
-            [ngSwitch]="control?.controlType">
-            <div>
-                    <app-textbox
-                    *ngSwitchCase="formControlTypes.Inputbox"
-                    [key]="control?.key"
-                    [label]="control?.label"
-                    [group]="formGroup"
-                    [inputType]="control?.inputType"
-                    [suffix]="control?.suffix"
-                    [required]="control?.required"
-                >
-                </app-textbox>
-            
-                <app-chips
-                    *ngSwitchCase="formControlTypes.Chips"
-                    [key]="control?.key"
-                    [label]="control?.label"
-                    [group]="formGroup"
-                    [required]="control?.required"
-                >
-                </app-chips>
-            </div>
-        </div>
-    </ng-container>
+  <ng-container *ngFor="let control of formControlConfigs">
+    <div class="form-group" [ngSwitch]="control?.controlType">
+      <div>
+        <app-textbox
+          *ngSwitchCase="formControlTypes.Inputbox"
+          [key]="control?.key"
+          [label]="control?.label"
+          [group]="formGroup"
+          [inputType]="control?.inputType"
+          [suffix]="control?.suffix"
+          [required]="control?.required"
+        >
+        </app-textbox>
+
+        <app-chips
+          *ngSwitchCase="formControlTypes.Chips"
+          [key]="control?.key"
+          [label]="control?.label"
+          [group]="formGroup"
+          [required]="control?.required"
+        >
+        </app-chips>
+      </div>
+    </div>
+  </ng-container>
 </form>

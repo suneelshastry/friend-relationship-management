@@ -1,18 +1,13 @@
 import { TestBed } from '@angular/core/testing';
 import { MapService } from './map.service';
-import {
-    sampleChartData,
-    sampleFriendFormData,
-} from '@constants';
+import { sampleChartData, sampleFriendFormData } from '@constants';
 
 describe('MapService', () => {
   let service: MapService;
 
   beforeEach(() => {
     TestBed.configureTestingModule({
-        providers: [
-            MapService
-        ]
+      providers: [MapService],
     });
     service = TestBed.inject(MapService);
   });
@@ -22,11 +17,10 @@ describe('MapService', () => {
   });
 
   it('should transform friend data to chart-usable data', async () => {
-      const calculatedChartData = await
-        service.mapToNetworkData(sampleFriendFormData)
-        .toPromise();
+    const calculatedChartData = await service
+      .mapToNetworkData(sampleFriendFormData)
+      .toPromise();
 
-      expect(calculatedChartData)
-        .toEqual(sampleChartData);
+    expect(calculatedChartData).toEqual(sampleChartData);
   });
 });

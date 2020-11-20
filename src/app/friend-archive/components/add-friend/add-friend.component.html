@@ -1,33 +1,36 @@
 <mat-toolbar class="toolbar-title">
-    <h1>Add friend details</h1>
-    <span class="spacer"></span>
-    <button
-        mat-stroked-button color="primary"
-        (click)="loadSeedData()"
-    >
-        Load seed data
-    </button>
+  <h1>Add friend details</h1>
+  <span class="spacer"></span>
+  <button mat-stroked-button color="primary" (click)="loadSeedData()">
+    Load seed data
+  </button>
 </mat-toolbar>
 
 <section>
-    <div>
-        <app-form-compose 
-            #form
-            [formControlConfigs]="formControlConfig$ | async"
-        ></app-form-compose>
-    </div>
+  <div>
+    <app-form-compose
+      #form
+      [formControlConfigs]="formControlConfig$ | async"
+    ></app-form-compose>
+  </div>
 </section>
 
 <mat-toolbar class="toolbar-actions">
-    <span class="spacer"></span>
-    <button
-        mat-button color="primary"
-        class="reset"
-        (click)="form.formGroup.reset()"
-    >Reset</button>
-    <button 
-        (click)="addFriend(form.formGroup)"
-        mat-flat-button color="primary"
-        class="add-friend"
-    >Add friend</button>
+  <span class="spacer"></span>
+  <button
+    mat-button
+    color="primary"
+    class="reset"
+    (click)="form.formGroup.reset()"
+  >
+    Reset
+  </button>
+  <button
+    (click)="addFriend(form.formGroup)"
+    mat-flat-button
+    color="primary"
+    class="add-friend"
+  >
+    Add friend
+  </button>
 </mat-toolbar>

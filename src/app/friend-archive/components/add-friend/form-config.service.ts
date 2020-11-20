@@ -10,30 +10,25 @@ import { Validators } from '@angular/forms';
 
 @Injectable()
 export class FormConfigService {
-
   getFormConfig(): Observable<FormControlConfig[]> {
     return of([
       {
         controlType: FormControlTypes.Inputbox,
-            label: 'Name',
-            key: 'name',
-            value: '',
-            order: 1,
-            inputType: 'text',
-            validators: [
-              Validators.required
-            ],
-            required: true,
+        label: 'Name',
+        key: 'name',
+        value: '',
+        order: 1,
+        inputType: 'text',
+        validators: [Validators.required],
+        required: true,
       } as FormControlTextbox,
       {
         controlType: FormControlTypes.Chips,
         label: 'Friends',
         key: 'friends',
-        value: [ ],
+        value: [],
         order: 2,
-        validators: [
-          Validators.required,
-        ],
+        validators: [Validators.required],
         required: true,
       } as FormControlChips,
       {
@@ -65,7 +60,7 @@ export class FormConfigService {
         ],
         suffix: 'Kg',
         required: true,
-      } as FormControlTextbox
+      } as FormControlTextbox,
     ]);
   }
 }

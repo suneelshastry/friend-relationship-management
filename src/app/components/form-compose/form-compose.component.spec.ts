@@ -1,14 +1,10 @@
-import {
-  async,
-  ComponentFixture,
-  TestBed
-} from '@angular/core/testing';
+import { async, ComponentFixture, TestBed } from '@angular/core/testing';
 import { FormGroup, Validators } from '@angular/forms';
 
 import {
   FormControlConfig,
   FormControlTextbox,
-  FormControlTypes
+  FormControlTypes,
 } from '../form-controls';
 
 import { FormComposeComponent } from './form-compose.component';
@@ -18,33 +14,28 @@ describe('FormComposeComponent', () => {
   let component: FormComposeComponent;
   let fixture: ComponentFixture<FormComposeComponent>;
   const formConfig: FormControlConfig[] = [
-      {
-        controlType: FormControlTypes.Inputbox,
-            label: 'Name',
-            key: 'name',
-            value: '',
-            order: 1,
-            inputType: 'text',
-            validators: [
-              Validators.required
-            ]
-      } as FormControlTextbox,
-    ];
+    {
+      controlType: FormControlTypes.Inputbox,
+      label: 'Name',
+      key: 'name',
+      value: '',
+      order: 1,
+      inputType: 'text',
+      validators: [Validators.required],
+    } as FormControlTextbox,
+  ];
 
   const formComposeService = {
-    buildFormGroup: (configs: FormControlConfig[]) =>
-      new FormGroup({}),
+    buildFormGroup: (configs: FormControlConfig[]) => new FormGroup({}),
   };
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FormComposeComponent ],
+      declarations: [FormComposeComponent],
       providers: [
-        {provide: FormComposeService, useValue: formComposeService},
-      ]
-
-    })
-    .compileComponents();
+        { provide: FormComposeService, useValue: formComposeService },
+      ],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -63,16 +54,12 @@ describe('FormComposeComponent', () => {
 
     fixture.detectChanges();
 
-    const formGroup = fixture.nativeElement
-      .querySelector('.form-froup');
+    const formGroup = fixture.nativeElement.querySelector('.form-froup');
 
-    expect(formGroup)
-      .toBeDefined();
+    expect(formGroup).toBeDefined();
 
-    const inputbox = fixture.nativeElement
-      .querySelector('.textbox');
+    const inputbox = fixture.nativeElement.querySelector('.textbox');
 
-    expect(inputbox)
-      .toBeDefined();
+    expect(inputbox).toBeDefined();
   });
 });

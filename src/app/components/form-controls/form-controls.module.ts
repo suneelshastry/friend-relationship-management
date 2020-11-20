@@ -10,27 +10,20 @@ import { FormChipsComponent } from './chips-control.component';
 import { FormTextboxComponent } from './textbox-control.component';
 
 @NgModule({
-    imports: [
-        CommonModule,
-        ReactiveFormsModule,
-        MatInputModule,
-        MatFormFieldModule,
-        MatAutocompleteModule,
-        MatChipsModule,
-        MatIconModule,
-    ],
-    declarations: [
-        FormTextboxComponent,
-        FormChipsComponent,
-    ],
-    exports: [
-        FormTextboxComponent,
-        FormChipsComponent,
-    ]
+  imports: [
+    CommonModule,
+    ReactiveFormsModule,
+    MatInputModule,
+    MatFormFieldModule,
+    MatAutocompleteModule,
+    MatChipsModule,
+    MatIconModule,
+  ],
+  declarations: [FormTextboxComponent, FormChipsComponent],
+  exports: [FormTextboxComponent, FormChipsComponent],
 })
 /**
  * The module that holds all the available
  * form controls that can be dynamically generated.
  */
-export class FormControlsModule { }
-
+export class FormControlsModule {}

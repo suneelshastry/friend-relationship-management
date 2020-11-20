@@ -1,39 +1,33 @@
 <div class="container">
-    <section class="form-section">
-        <div class="form">
-            <app-add-friend></app-add-friend>
-        </div>
-    </section>
-    
-    <!-- The below section may be extracted into its separate
-    components. -->
-    <section class="chart-section">
-        <mat-toolbar class="toolbar-title">
-            <h1>Your friend network</h1>
-        </mat-toolbar>
+  <section class="form-section">
+    <div class="form">
+      <app-add-friend></app-add-friend>
+    </div>
+  </section>
 
-        <ng-container
-            class="chart-items"
-            *ngIf="chartData$ | async as chartData">
-                <ng-container 
-                    *ngIf="
-                        chartData.nodes && chartData.nodes.length > 0;
-                        else banner"
-                >
-                        <app-network-chart
-                            [data]="chartData"
-                        ></app-network-chart>
-                </ng-container>
-        </ng-container>
-    </section>
+  <!-- The below section may be extracted into its separate
+    components. -->
+  <section class="chart-section">
+    <mat-toolbar class="toolbar-title">
+      <h1>Your friend network</h1>
+    </mat-toolbar>
+
+    <ng-container class="chart-items" *ngIf="chartData$ | async as chartData">
+      <ng-container
+        *ngIf="chartData.nodes && chartData.nodes.length > 0; else banner"
+      >
+        <app-network-chart [data]="chartData"></app-network-chart>
+      </ng-container>
+    </ng-container>
+  </section>
 </div>
-  
+
 <ng-template #banner>
-    <article class="banner">
-        <div>
-            <h2 class="banner-primary">Build your friend network</h2>
-            <p class="banner-secondary">Start adding your friends</p>
-            <img src="assets/svg/friends.svg">
-        </div>
-    </article>
+  <article class="banner">
+    <div>
+      <h2 class="banner-primary">Build your friend network</h2>
+      <p class="banner-secondary">Start adding your friends</p>
+      <img src="assets/svg/friends.svg" />
+    </div>
+  </article>
 </ng-template>

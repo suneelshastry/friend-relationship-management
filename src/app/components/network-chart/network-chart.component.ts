@@ -1,15 +1,19 @@
 import {
   AfterViewInit,
   ChangeDetectionStrategy,
-  Component, ElementRef,
-  Input, OnChanges,
-  OnDestroy, SimpleChanges, ViewChild
+  Component,
+  ElementRef,
+  Input,
+  OnChanges,
+  OnDestroy,
+  SimpleChanges,
+  ViewChild,
 } from '@angular/core';
 import {
   ChartLayout,
   NetworkChartData,
   NetworkLink,
-  NetworkNode
+  NetworkNode,
 } from './network-chart.interface';
 import { select, selectAll } from 'd3-selection';
 import { scaleOrdinal } from 'd3-scale';
@@ -30,7 +34,7 @@ const d3 = {
   forceX,
   forceY,
   scaleOrdinal,
-  schemePaired
+  schemePaired,
 };
 
 @Component({
@@ -39,15 +43,15 @@ const d3 = {
   styleUrls: ['./network-chart.component.scss'],
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class NetworkChartComponent implements
-  AfterViewInit, OnChanges, OnDestroy {
+export class NetworkChartComponent
+  implements AfterViewInit, OnChanges, OnDestroy {
   @Input() data: NetworkChartData;
 
   @Input() chartLayout: ChartLayout;
 
   // TODO add types for all d3 artifacts and variables
   color = d3.scaleOrdinal(d3.schemePaired);
-  @ViewChild('chart')container: ElementRef<any>;
+  @ViewChild('chart') container: ElementRef<any>;
   svgElement;
   link;
   node;
@@ -56,7 +60,7 @@ export class NetworkChartComponent implements
 
   // Todo refactor this function
   ngOnChanges(change: SimpleChanges): void {
-    const {data, chartLayout} = change;
+    const { data, chartLayout } = change;
 
     // skip first change
     if (data && data.isFirstChange()) {
@@ -95,24 +99,26 @@ export class NetworkChartComponent implements
       height = this.container.nativeElement.clientHeight,
     } = this.chartLayout || {};
 
-    this.svgElement = d3.select(this.container.nativeElement)
-    .append('svg')
+    this.svgElement = d3
+      .select(this.container.nativeElement)
+      .append('svg')
       .attr('width', width)
       .attr('height', height)
-    .append('g')
+      .append('g')
       .attr(
         'transform',
         `translate(
           ${width / 2},${height / 2}
         )`
       );
-}
+  }
 
   /**
    * configures simulation of the force
    */
   private addSimulation(): void {
-    this.simulation = d3.forceSimulation()
+    this.simulation = d3
+      .forceSimulation()
       .force('charge', d3.forceManyBody().strength(-1000))
       .force('link', d3.forceLink().distance(200))
       .force('x', d3.forceX())
@@ -126,8 +132,8 @@ export class NetworkChartComponent implements
   private addLink(): void {
     this.link = this.svgElement
       .append('g')
-        .attr('stroke', '#000')
-        .attr('stroke-width', 1.5)
+      .attr('stroke', '#000')
+      .attr('stroke-width', 1.5)
       .selectAll('line');
   }
 
@@ -135,18 +141,18 @@ export class NetworkChartComponent implements
    * sets up group for adding nodes
    */
   private addNode(): void {
-    this.node = this.svgElement.append('g')
+    this.node = this.svgElement
+      .append('g')
       .attr('stroke', '#fff')
       .attr('stroke-width', 1.5)
-    .selectAll('circle');
+      .selectAll('circle');
   }
 
   /**
    * sets up group for adding texts
    */
   private addTextLabels(): void {
-    this.texts = this.svgElement.append('g')
-    .selectAll('text.label');
+    this.texts = this.svgElement.append('g').selectAll('text.label');
   }
 
   /**
@@ -154,15 +160,15 @@ export class NetworkChartComponent implements
    * upon data addition.
    */
   private ticked(): void {
-    this.node.attr('cx', d => d.x)
-        .attr('cy', d => d.y);
+    this.node.attr('cx', (d) => d.x).attr('cy', (d) => d.y);
 
-    this.link.attr('x1', d => d.source.x)
-        .attr('y1', d => d.source.y)
-        .attr('x2', d => d.target.x)
-        .attr('y2', d => d.target.y);
+    this.link
+      .attr('x1', (d) => d.source.x)
+      .attr('y1', (d) => d.source.y)
+      .attr('x2', (d) => d.target.x)
+      .attr('y2', (d) => d.target.y);
 
-    this.texts.attr('transform', d => `translate(${d.x}, ${d.y})`);
+    this.texts.attr('transform', (d) => `translate(${d.x}, ${d.y})`);
   }
 
   /**
@@ -177,7 +183,6 @@ export class NetworkChartComponent implements
     this.updateDrawLinks(mergedLinkData);
     this.updateDrawTexts(mergedNodeData);
 
-
     this.simulation.nodes(mergedNodeData);
     this.simulation.force('link').links(mergedLinkData);
     this.simulation.alpha(1).restart();
@@ -187,20 +192,17 @@ export class NetworkChartComponent implements
    * generates nodes by merging old and new data
    */
   private generateNodes(): NetworkNode[] {
-    const {nodes = []} = this.data || {};
+    const { nodes = [] } = this.data || {};
     const oldNodeData: Map<number, NetworkNode> = new Map(
-      this.node.data()
-        .map((d: NetworkNode) => [d.id, d])
+      this.node.data().map((d: NetworkNode) => [d.id, d])
     );
-    const mergedNodes = nodes
-      .map(d => {
-        const old = oldNodeData.get(d.id);
-        return {
-          ...old,
-          d
-        };
-      }
-    );
+    const mergedNodes = nodes.map((d) => {
+      const old = oldNodeData.get(d.id);
+      return {
+        ...old,
+        d,
+      };
+    });
 
     return mergedNodes;
   }
@@ -209,9 +211,9 @@ export class NetworkChartComponent implements
    * generates links by considering new data
    */
   private generateLinks(): NetworkLink[] {
-    const {links = []} = this.data || {};
-    const mergedLink = links.map(d => {
-      return {...d};
+    const { links = [] } = this.data || {};
+    const mergedLink = links.map((d) => {
+      return { ...d };
     });
 
     return mergedLink;
@@ -222,12 +224,14 @@ export class NetworkChartComponent implements
    */
   private updateDrawNodes(nodeData): void {
     this.node = this.node
-    .data(nodeData, d => d.id)
-    .join(enter => enter.append('circle')
-      .attr('class', 'node')
-      .attr('r', 24)
-      .attr('fill', d => this.color(d.d.id))
-    );
+      .data(nodeData, (d) => d.id)
+      .join((enter) =>
+        enter
+          .append('circle')
+          .attr('class', 'node')
+          .attr('r', 24)
+          .attr('fill', (d) => this.color(d.d.id))
+      );
   }
 
   /**
@@ -235,9 +239,9 @@ export class NetworkChartComponent implements
    */
   private updateDrawLinks(linkData): void {
     this.link = this.link
-    .data(linkData, d => [d.source, d.target])
-    .join('line')
-    .attr('class', 'link');
+      .data(linkData, (d) => [d.source, d.target])
+      .join('line')
+      .attr('class', 'link');
   }
 
   /**
@@ -245,13 +249,13 @@ export class NetworkChartComponent implements
    */
   private updateDrawTexts(nodeData): void {
     this.texts = this.texts
-    .data(nodeData, data => data.d)
-    .join('text')
-    .text(data => data.d.name)
-    .attr('class', 'label')
-    .style('text-transform', 'capitalize')
-    .attr('x', -10)
-    .attr('y', 40);
+      .data(nodeData, (data) => data.d)
+      .join('text')
+      .text((data) => data.d.name)
+      .attr('class', 'label')
+      .style('text-transform', 'capitalize')
+      .attr('x', -10)
+      .attr('y', 40);
   }
 
   drawChart(): void {

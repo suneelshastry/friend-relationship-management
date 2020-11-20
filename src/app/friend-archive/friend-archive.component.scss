@@ -1,35 +1,35 @@
 .container {
-    display: flex;
-    flex-direction: row;
+  display: flex;
+  flex-direction: row;
 }
 
 .form-section {
-    width: 30vw;
-    height: 100vh;
-    border-right: 1px dashed #A78BFA;
+  width: 30vw;
+  height: 100vh;
+  border-right: 1px dashed #a78bfa;
 }
 
 .chart-section {
-    width: 70vw;
-    height: 100vh;
+  width: 70vw;
+  height: 100vh;
 }
 
 .banner {
-    display: grid;
-    place-items: center;
-    padding: 25px;
+  display: grid;
+  place-items: center;
+  padding: 25px;
 }
 
 .banner-primary {
-    font-size: 42px;
-    margin-top: 25px;
+  font-size: 42px;
+  margin-top: 25px;
 }
 
 .banner-secondary {
-    font-size: 20px;
+  font-size: 20px;
 }
 
 .toolbar-title {
-    padding: 0 2.5rem;
-    background: #E5E7EB;
+  padding: 0 2.5rem;
+  background: #e5e7eb;
 }

@@ -10,9 +10,7 @@ import { FormComposeService } from './form-compose.service';
   selector: 'app-form-compose',
   templateUrl: './form-compose.component.html',
   styleUrls: ['./form-compose.component.scss'],
-  providers: [
-    FormComposeService
-  ]
+  providers: [FormComposeService],
 })
 /**
  * This component abstracts the logic of building
@@ -23,13 +21,12 @@ export class FormComposeComponent implements OnInit {
   formGroup: FormGroup;
   formControlTypes = FormControlTypes;
 
-  constructor(
-    private formComposeService: FormComposeService
-  ) { }
+  constructor(private formComposeService: FormComposeService) {}
 
   ngOnInit(): void {
     // Build formGroup by iterating over form-control configs
-    this.formGroup =
-      this.formComposeService.buildFormGroup(this.formControlConfigs);
+    this.formGroup = this.formComposeService.buildFormGroup(
+      this.formControlConfigs
+    );
   }
 }

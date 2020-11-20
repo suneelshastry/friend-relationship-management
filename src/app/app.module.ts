@@ -7,9 +7,7 @@ import { AppRoutingModule } from './app-routing.module';
 import { EffectsModule } from '@ngrx/effects';
 
 @NgModule({
-  declarations: [
-    AppComponent,
-  ],
+  declarations: [AppComponent],
   imports: [
     BrowserModule,
     BrowserAnimationsModule,
@@ -18,6 +16,6 @@ import { EffectsModule } from '@ngrx/effects';
     EffectsModule.forRoot([]),
   ],
   providers: [],
-  bootstrap: [AppComponent]
+  bootstrap: [AppComponent],
 })
-export class AppModule { }
+export class AppModule {}

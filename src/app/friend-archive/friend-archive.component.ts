@@ -10,22 +10,19 @@ import { Observable } from 'rxjs';
   selector: 'app-friend-archive',
   templateUrl: './friend-archive.component.html',
   styleUrls: ['./friend-archive.component.scss'],
-  providers: [
-    MapService
-  ]
+  providers: [MapService],
 })
 export class FriendArchiveComponent implements OnInit {
   chartData$: Observable<NetworkChartData>;
 
   constructor(
     private mapService: MapService,
-    private store: Store<FriendState>,
-  ) { }
+    private store: Store<FriendState>
+  ) {}
 
   ngOnInit(): void {
-    this.chartData$ = this.store.select(getFriendsList)
-    .pipe(
-      switchMap(r => this.mapService.mapToNetworkData(r))
-    );
+    this.chartData$ = this.store
+      .select(getFriendsList)
+      .pipe(switchMap((r) => this.mapService.mapToNetworkData(r)));
   }
 }

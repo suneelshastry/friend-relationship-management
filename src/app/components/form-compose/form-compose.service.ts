@@ -8,12 +8,11 @@ import { FormControlConfig } from '../form-controls/form-control-config';
  * the processing of form control config
  */
 export class FormComposeService {
-
-  constructor() { }
+  constructor() {}
 
   buildFormGroup(controlConfigs: FormControlConfig[]): FormGroup {
     const keySet = new Set();
-    const group = { };
+    const group = {};
 
     controlConfigs.forEach((config) => {
       if (keySet.has(config.key)) {
@@ -21,10 +20,9 @@ export class FormComposeService {
         throw new Error('One or more form control keys are not unique');
       }
       keySet.add(config.key);
-      group[config.key] =
-            new FormControl(config.value, config.validators);
+      group[config.key] = new FormControl(config.value, config.validators);
     });
 
     return new FormGroup(group);
-}
+  }
 }

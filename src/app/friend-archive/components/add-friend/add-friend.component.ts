@@ -1,7 +1,12 @@
-import {Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
+import { Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { FriendState, addFriend, getFriendsList, loadFriends } from '@friend-archive/state';
+import {
+  FriendState,
+  addFriend,
+  getFriendsList,
+  loadFriends,
+} from '@friend-archive/state';
 import { Person } from '@models';
 import { FormConfigService } from './form-config.service';
 import { FormComposeComponent, FormControlConfig } from '@components';
@@ -13,9 +18,7 @@ import { sampleFriendFormData } from '@constants';
   selector: 'app-add-friend',
   templateUrl: './add-friend.component.html',
   styleUrls: ['./add-friend.component.scss'],
-  providers: [
-    FormConfigService
-  ]
+  providers: [FormConfigService],
 })
 /**
  * This component abstracts the add-friend functionality.
@@ -27,19 +30,17 @@ export class AddFriendComponent implements OnInit, OnDestroy {
 
   constructor(
     private store: Store<FriendState>,
-    private formConfigService: FormConfigService,
-  ) { }
+    private formConfigService: FormConfigService
+  ) {}
 
   ngOnInit(): void {
     // TODO This can be a plain object
-    this.formControlConfig$ =
-      this.formConfigService.getFormConfig();
+    this.formControlConfig$ = this.formConfigService.getFormConfig();
 
     // upon successful store update, reset the form.
-    this.store.select(getFriendsList)
-      .pipe(
-        takeUntil(this.stopSubscription),
-      )
+    this.store
+      .select(getFriendsList)
+      .pipe(takeUntil(this.stopSubscription))
       .subscribe(() => {
         if (this.form && this.form.formGroup) {
           this.form.formGroup.reset();
@@ -54,17 +55,11 @@ export class AddFriendComponent implements OnInit, OnDestroy {
     }
 
     // dispatch add-friend action
-    this.store.dispatch(
-      addFriend(
-        {friend: formGroup.value as Person}
-      )
-    );
+    this.store.dispatch(addFriend({ friend: formGroup.value as Person }));
   }
 
   loadSeedData(): void {
-    this.store.dispatch(
-      loadFriends({friends: sampleFriendFormData}),
-    );
+    this.store.dispatch(loadFriends({ friends: sampleFriendFormData }));
   }
 
   ngOnDestroy(): void {

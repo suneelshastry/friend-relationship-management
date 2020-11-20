@@ -1,19 +1,19 @@
 export interface NetworkNode {
-    id: number;
-    name?: string;
+  id: number;
+  name?: string;
 }
 
 export interface NetworkLink {
-    source?: number;
-    target?: number;
+  source?: number;
+  target?: number;
 }
 
 export interface NetworkChartData {
-    nodes?: NetworkNode[];
-    links?: NetworkLink[];
+  nodes?: NetworkNode[];
+  links?: NetworkLink[];
 }
 
 export interface ChartLayout {
-    width: number;
-    height: number;
+  width: number;
+  height: number;
 }

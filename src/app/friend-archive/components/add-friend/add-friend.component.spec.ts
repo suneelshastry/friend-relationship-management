@@ -19,34 +19,26 @@ describe('AddFriendComponent', () => {
   };
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [
-        AddFriendComponent,
-      ],
+      declarations: [AddFriendComponent],
       providers: [
         provideMockStore(),
-        { provide: FormConfigService, useValue: formConfigService}
+        { provide: FormConfigService, useValue: formConfigService },
       ],
-    })
-    .compileComponents();
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(AddFriendComponent);
     component = fixture.componentInstance;
     mockStore = TestBed.inject(MockStore);
-    mockFriendsListSelector = mockStore.overrideSelector(
-      getFriendsList,
-      [
-        {
-          name: 'john',
-          friends: [
-            'jane'
-          ],
-          age: 29,
-          weight: 80,
-        }
-      ]
-    );
+    mockFriendsListSelector = mockStore.overrideSelector(getFriendsList, [
+      {
+        name: 'john',
+        friends: ['jane'],
+        age: 29,
+        weight: 80,
+      },
+    ]);
     fixture.detectChanges();
   });
 
@@ -58,9 +50,6 @@ describe('AddFriendComponent', () => {
     spyOn(mockStore, 'dispatch');
     component.addFriend(new FormGroup({}));
 
-    expect(mockStore.dispatch)
-      .toHaveBeenCalledWith(
-        addFriend( {friend: {}})
-      );
+    expect(mockStore.dispatch).toHaveBeenCalledWith(addFriend({ friend: {} }));
   });
 });

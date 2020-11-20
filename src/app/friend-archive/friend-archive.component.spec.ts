@@ -13,31 +13,23 @@ describe('FriendArchiveComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ FriendArchiveComponent ],
-      providers: [
-        provideMockStore(),
-      ],
-    })
-    .compileComponents();
+      declarations: [FriendArchiveComponent],
+      providers: [provideMockStore()],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
     fixture = TestBed.createComponent(FriendArchiveComponent);
     component = fixture.componentInstance;
     mockStore = TestBed.inject(MockStore);
-    mockFriendsListSelector = mockStore.overrideSelector(
-      getFriendsList,
-      [
-        {
-          name: 'john',
-          friends: [
-            'jane'
-          ],
-          age: 29,
-          weight: 80,
-        }
-      ]
-    );
+    mockFriendsListSelector = mockStore.overrideSelector(getFriendsList, [
+      {
+        name: 'john',
+        friends: ['jane'],
+        age: 29,
+        weight: 80,
+      },
+    ]);
     fixture.detectChanges();
   });
 

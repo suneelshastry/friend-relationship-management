@@ -21,7 +21,7 @@ const d3 = {
   forceX,
   forceY,
   scaleOrdinal,
-  schemeAccent
+  schemeAccent,
 };
 describe('NetworkChartComponent', () => {
   let component: NetworkChartComponent;
@@ -29,9 +29,8 @@ describe('NetworkChartComponent', () => {
 
   beforeEach(async(() => {
     TestBed.configureTestingModule({
-      declarations: [ NetworkChartComponent ]
-    })
-    .compileComponents();
+      declarations: [NetworkChartComponent],
+    }).compileComponents();
   }));
 
   beforeEach(() => {
@@ -46,31 +45,37 @@ describe('NetworkChartComponent', () => {
 
   xit('should draw SVG with proper attributes', () => {
     component.container = {
-      nativeElement: document.createElement('div')
+      nativeElement: document.createElement('div'),
     };
 
-    const d3SpyObject =
-      jasmine.createSpyObj('d3', ['append', 'attr', 'selectAll']);
+    const d3SpyObject = jasmine.createSpyObj('d3', [
+      'append',
+      'attr',
+      'selectAll',
+    ]);
 
     spyOn(d3, 'select').and.returnValue(d3SpyObject);
     spyOn(d3, 'selectAll').and.returnValue(d3SpyObject);
 
-    const svgSpyObject =
-      jasmine.createSpyObj('svg', ['append', 'attr', 'style']);
+    const svgSpyObject = jasmine.createSpyObj('svg', [
+      'append',
+      'attr',
+      'style',
+    ]);
 
     d3SpyObject.append.and.returnValue(svgSpyObject);
 
-    d3SpyObject.attr.and.callFake(function(_key, _value) {
+    d3SpyObject.attr.and.callFake(function (_key, _value) {
       return this;
     });
 
     svgSpyObject.append.and.returnValue(svgSpyObject);
 
-    svgSpyObject.attr.and.callFake(function(_key, _value) {
+    svgSpyObject.attr.and.callFake(function (_key, _value) {
       return this;
     });
 
-    svgSpyObject.style.and.callFake(function(_key, _value) {
+    svgSpyObject.style.and.callFake(function (_key, _value) {
       return this;
     });
 
@@ -81,9 +86,6 @@ describe('NetworkChartComponent', () => {
     fixture.detectChanges();
     component.ngAfterViewInit();
 
-    expect(d3.select)
-      .toHaveBeenCalled();
+    expect(d3.select).toHaveBeenCalled();
   });
-
-
 });
