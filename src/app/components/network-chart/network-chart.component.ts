@@ -42,6 +42,7 @@ const d3 = {
 export class NetworkChartComponent implements
   AfterViewInit, OnChanges, OnDestroy {
   @Input() data: NetworkChartData;
+
   @Input() chartLayout: ChartLayout;
 
   // TODO add types for all d3 artifacts and variables
@@ -57,6 +58,7 @@ export class NetworkChartComponent implements
   ngOnChanges(change: SimpleChanges): void {
     const {data, chartLayout} = change;
 
+    // skip first change
     if (data && data.isFirstChange()) {
       return;
     }
@@ -65,12 +67,15 @@ export class NetworkChartComponent implements
       return;
     }
 
+    /* changes to chart layout
+        warrants for chart destroy &redraw */
     if (chartLayout) {
       this.removeGraph();
       this.drawChart();
       return;
     }
 
+    // Just update the data of the chart.
     if (data) {
       this.updateData();
     }
@@ -80,12 +85,16 @@ export class NetworkChartComponent implements
     this.drawChart();
   }
 
+  /**
+   * Draws initial svg container for the chart
+   */
   private drawChartSvg(): void {
+    // use parent's width and height as default.
     const {
       width = this.container.nativeElement.clientWidth,
       height = this.container.nativeElement.clientHeight,
     } = this.chartLayout || {};
-    console.log('in');
+
     this.svgElement = d3.select(this.container.nativeElement)
     .append('svg')
       .attr('width', width)
@@ -99,6 +108,9 @@ export class NetworkChartComponent implements
       );
 }
 
+  /**
+   * configures simulation of the force
+   */
   private addSimulation(): void {
     this.simulation = d3.forceSimulation()
       .force('charge', d3.forceManyBody().strength(-1000))
@@ -108,6 +120,9 @@ export class NetworkChartComponent implements
       .on('tick', () => this.ticked());
   }
 
+  /**
+   * sets up group for adding links
+   */
   private addLink(): void {
     this.link = this.svgElement
       .append('g')
@@ -116,6 +131,9 @@ export class NetworkChartComponent implements
       .selectAll('line');
   }
 
+  /**
+   * sets up group for adding nodes
+   */
   private addNode(): void {
     this.node = this.svgElement.append('g')
       .attr('stroke', '#fff')
@@ -123,11 +141,18 @@ export class NetworkChartComponent implements
     .selectAll('circle');
   }
 
+  /**
+   * sets up group for adding texts
+   */
   private addTextLabels(): void {
     this.texts = this.svgElement.append('g')
     .selectAll('text.label');
   }
 
+  /**
+   * Adjusts positions of nodes, links and texts
+   * upon data addition.
+   */
   private ticked(): void {
     this.node.attr('cx', d => d.x)
         .attr('cy', d => d.y);
@@ -140,6 +165,10 @@ export class NetworkChartComponent implements
     this.texts.attr('transform', d => `translate(${d.x}, ${d.y})`);
   }
 
+  /**
+   * Merges and update the date required for drawing
+   * nodes, links and texts.
+   */
   private updateData(): void {
     const mergedNodeData = this.generateNodes();
     const mergedLinkData = this.generateLinks();
@@ -154,6 +183,9 @@ export class NetworkChartComponent implements
     this.simulation.alpha(1).restart();
   }
 
+  /**
+   * generates nodes by merging old and new data
+   */
   private generateNodes(): NetworkNode[] {
     const {nodes = []} = this.data || {};
     const oldNodeData: Map<number, NetworkNode> = new Map(
@@ -173,6 +205,9 @@ export class NetworkChartComponent implements
     return mergedNodes;
   }
 
+  /**
+   * generates links by considering new data
+   */
   private generateLinks(): NetworkLink[] {
     const {links = []} = this.data || {};
     const mergedLink = links.map(d => {
@@ -182,6 +217,9 @@ export class NetworkChartComponent implements
     return mergedLink;
   }
 
+  /**
+   * Updates nodes with new data and redraws
+   */
   private updateDrawNodes(nodeData): void {
     this.node = this.node
     .data(nodeData, d => d.id)
@@ -192,6 +230,9 @@ export class NetworkChartComponent implements
     );
   }
 
+  /**
+   * Updates links with new data and redraws
+   */
   private updateDrawLinks(linkData): void {
     this.link = this.link
     .data(linkData, d => [d.source, d.target])
@@ -199,6 +240,9 @@ export class NetworkChartComponent implements
     .attr('class', 'link');
   }
 
+  /**
+   * Updates text-labels with new data and redraws
+   */
   private updateDrawTexts(nodeData): void {
     this.texts = this.texts
     .data(nodeData, data => data.d)

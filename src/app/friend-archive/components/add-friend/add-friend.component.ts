@@ -17,6 +17,9 @@ import { sampleFriendFormData } from '@constants';
     FormConfigService
   ]
 })
+/**
+ * This component abstracts the add-friend functionality.
+ */
 export class AddFriendComponent implements OnInit, OnDestroy {
   formControlConfig$: Observable<FormControlConfig[]>;
   @ViewChild(FormComposeComponent) form: FormComposeComponent;
@@ -32,6 +35,7 @@ export class AddFriendComponent implements OnInit, OnDestroy {
     this.formControlConfig$ =
       this.formConfigService.getFormConfig();
 
+    // upon successful store update, reset the form.
     this.store.select(getFriendsList)
       .pipe(
         takeUntil(this.stopSubscription),
@@ -49,6 +53,7 @@ export class AddFriendComponent implements OnInit, OnDestroy {
       return;
     }
 
+    // dispatch add-friend action
     this.store.dispatch(
       addFriend(
         {friend: formGroup.value as Person}

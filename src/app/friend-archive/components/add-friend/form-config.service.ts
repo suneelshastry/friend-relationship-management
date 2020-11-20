@@ -22,7 +22,8 @@ export class FormConfigService {
             inputType: 'text',
             validators: [
               Validators.required
-            ]
+            ],
+            required: true,
       } as FormControlTextbox,
       {
         controlType: FormControlTypes.Chips,
@@ -32,7 +33,8 @@ export class FormConfigService {
         order: 2,
         validators: [
           Validators.required,
-        ]
+        ],
+        required: true,
       } as FormControlChips,
       {
         controlType: FormControlTypes.Inputbox,
@@ -46,7 +48,8 @@ export class FormConfigService {
           Validators.max(150),
           Validators.min(0),
         ],
-        suffix: 'years'
+        suffix: 'years',
+        required: true,
       } as FormControlTextbox,
       {
         controlType: FormControlTypes.Inputbox,
@@ -60,7 +63,8 @@ export class FormConfigService {
           Validators.max(1000),
           Validators.min(0),
         ],
-        suffix: 'Kg'
+        suffix: 'Kg',
+        required: true,
       } as FormControlTextbox
     ]);
   }

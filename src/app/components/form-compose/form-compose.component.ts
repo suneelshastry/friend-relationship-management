@@ -10,7 +10,14 @@ import { FormComposeService } from './form-compose.service';
   selector: 'app-form-compose',
   templateUrl: './form-compose.component.html',
   styleUrls: ['./form-compose.component.scss'],
+  providers: [
+    FormComposeService
+  ]
 })
+/**
+ * This component abstracts the logic of building
+ * dynamic form as per the given config for form-controls.
+ */
 export class FormComposeComponent implements OnInit {
   @Input() formControlConfigs: FormControlConfig[];
   formGroup: FormGroup;
@@ -21,6 +28,7 @@ export class FormComposeComponent implements OnInit {
   ) { }
 
   ngOnInit(): void {
+    // Build formGroup by iterating over form-control configs
     this.formGroup =
       this.formComposeService.buildFormGroup(this.formControlConfigs);
   }

@@ -8,7 +8,9 @@ import { MatChipInputEvent } from '@angular/material/chips';
     template: `
         <mat-form-field [formGroup]="group"
             class="form-element chips">
-            <mat-label>{{label + ' *'}}</mat-label>
+            <mat-label>
+                {{required ? label + ' *' : label}}
+            </mat-label>
             <mat-chip-list #chipList [formControl]="formControl">
                 <mat-chip
                     *ngFor="let item of formControl.value"
@@ -52,13 +54,33 @@ import { MatChipInputEvent } from '@angular/material/chips';
  * Wrapper for Angular material chip component
  */
 export class FormChipsComponent implements OnInit {
+    /**
+     * unique name for the component in a form-group.
+     */
     @Input() key: string;
-    @Input() suggestions: string[] = [];
-    @Input() group: FormGroup;
+
+    /**
+     * Label for the control
+     */
     @Input() label: string;
 
+    /**
+     * options that pop up as autocomplete suggestions.
+     */
+    @Input() suggestions: string[] = [];
+
+    /**
+     * Formgroup instance under which the control should be placed.
+     */
+    @Input() group: FormGroup;
+
+    @Input() required: boolean;
+
     @ViewChild('formInput') formInput: ElementRef<HTMLInputElement>;
+
+    /* form control for input tag that takes value */
     inputFormControl = new FormControl();
+
     formControl: FormControl;
 
     ngOnInit(): void {
@@ -70,7 +92,8 @@ export class FormChipsComponent implements OnInit {
         const value = event.value;
 
         if ((value || '').trim()) {
-            // TODO Remvoe this workaround in future
+            /* workaround to fix formGroup.reset
+               initalizing control to null */
             if (this.formControl.value === null) {
                 this.formControl.setValue([]);
                 this.formControl.updateValueAndValidity();

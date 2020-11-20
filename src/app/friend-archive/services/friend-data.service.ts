@@ -3,6 +3,11 @@ import { Person } from '@models';
 import { Observable, of, throwError } from 'rxjs';
 
 @Injectable()
+/**
+ * This service abstracts the Friend data storage service.
+ * This is just a placeholder. Maybe replaced with actual
+ * API calls in future.
+ */
 export class FriendDataService {
     friendsRepo: Person[] = [];
 

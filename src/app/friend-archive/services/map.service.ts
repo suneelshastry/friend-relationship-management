@@ -4,6 +4,10 @@ import { NetworkChartData, NetworkLink } from '@components';
 import { Observable, of, throwError } from 'rxjs';
 
 @Injectable()
+/**
+ * This service abstracts the translation of raw friend
+ * data to chart-readable format.
+ */
 export class MapService {
     mapToNetworkData(friendsList: Person[]): Observable<NetworkChartData> {
         if (!friendsList || friendsList.length === 0) {
