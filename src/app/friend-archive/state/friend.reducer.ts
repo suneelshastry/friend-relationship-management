@@ -1,8 +1,7 @@
 import { Person } from '@models';
 import * as AppState from '../../state/app.reducer';
-import * as FriendActions from './friend.actions';
+import { FriendAction, FriendActionTypes } from './friend.actions';
 import {
-    createReducer, on,
     createSelector,
     createFeatureSelector,
 } from '@ngrx/store';
@@ -13,27 +12,35 @@ export interface State extends AppState.State {
 
 export interface FriendState {
     friends: Person[];
+    error?: string | null;
 }
 
 const initialState: FriendState = {
     friends: [],
+    error: null,
 };
 
-export const FriendReducer = createReducer(
-    initialState,
-    on(FriendActions.addFriend, (state, action): FriendState => {
-        return {
-            ...state,
-            friends: [
-                ...state.friends,
-                {
-                    ...action.friend,
-                    id: state.friends.length
-                }
-            ],
-        };
-    } )
-);
+export function friendReducer(
+    state: FriendState = initialState,
+    action: FriendAction
+): FriendState {
+    switch (action.type) {
+        case FriendActionTypes.AddFriendSuccess:
+            return {
+                ...state,
+                friends: [
+                    ...state.friends,
+                    action.payload.friend,
+                ]
+            };
+        case FriendActionTypes.AddFriendFailure:
+            return {
+                ...state,
+                error: action.payload.error,
+            };
+            default: return state;
+    }
+}
 
 const getFriendStateSelector =
     createFeatureSelector<FriendState>('friends');
@@ -41,4 +48,9 @@ const getFriendStateSelector =
 export const getFriendsList = createSelector(
     getFriendStateSelector,
     state => state.friends,
+);
+
+export const getError = createSelector(
+    getFriendStateSelector,
+    state => state.error,
 );

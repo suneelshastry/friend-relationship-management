@@ -153,7 +153,10 @@ export class NetworkChartComponent implements
     this.texts = this.texts
       .data(mergedNodes, data => data.d)
       .join('text')
-      .text(data => data.d.name);
+      .text(data => data.d.name)
+      .style('text-transform', 'capitalize')
+      .attr('x', -10)
+      .attr('y', 40);
 
     this.simulation.nodes(mergedNodes);
     this.simulation.force('link').links(mergedLink);

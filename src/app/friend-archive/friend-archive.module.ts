@@ -7,8 +7,14 @@ import {
 import { NetworkChartModule, FormComposeModule } from '@components';
 import { MatButtonModule } from '@angular/material/button';
 import { StoreModule } from '@ngrx/store';
-import { FriendReducer } from '@friend-archive/state';
+import { EffectsModule } from '@ngrx/effects';
+import { friendReducer } from '@friend-archive/state';
 import { RouterModule, Routes } from '@angular/router';
+import { FriendEffects } from './state';
+import { FriendDataService } from './services/friend-data.service';
+import { MatDialogModule } from '@angular/material/dialog';
+import { MatToolbarModule } from '@angular/material/toolbar';
+import { MatSnackBarModule } from '@angular/material/snack-bar';
 
 const routes: Routes = [
   {
@@ -16,7 +22,7 @@ const routes: Routes = [
     pathMatch: 'full',
     component: FriendArchiveComponent,
   }
-]
+];
 
 @NgModule({
   declarations: [
@@ -28,12 +34,19 @@ const routes: Routes = [
     NetworkChartModule,
     FormComposeModule,
     MatButtonModule,
+    MatDialogModule,
+    MatToolbarModule,
+    MatSnackBarModule,
     RouterModule.forChild(routes),
-    StoreModule.forFeature('friends', FriendReducer),
+    StoreModule.forFeature('friends', friendReducer),
+    EffectsModule.forFeature([FriendEffects])
   ],
   exports: [
     AddFriendComponent,
     FriendArchiveComponent,
   ],
+  providers: [
+    FriendDataService
+  ]
 })
 export class FriendArchiveModule { }

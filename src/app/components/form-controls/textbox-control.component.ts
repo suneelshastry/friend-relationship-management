@@ -4,7 +4,11 @@ import { FormGroup } from '@angular/forms';
 @Component({
     selector: 'app-textbox',
     template: `
-        <mat-form-field appearance="outline" [formGroup]="group">
+        <mat-form-field
+            appearance="outline"
+            [formGroup]="group"
+            class="form-element"
+        >
             <mat-label>{{label + ' *'}}</mat-label>
             <input
                 matInput
@@ -12,7 +16,8 @@ import { FormGroup } from '@angular/forms';
                 [type]="inputType"
             >
         </mat-form-field>
-    `
+    `,
+    styles: ['.form-element {width: 100%}']
 })
 /**
  * Wrapper for Angular material Text input component

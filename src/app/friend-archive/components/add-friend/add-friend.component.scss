@@ -1,3 +1,16 @@
-.outer {
-    margin: 20px 25px;
+section {
+    padding: 2.5rem 2.5rem 0 2.5rem;
+}
+
+.spacer {
+    flex: 1 1 auto;
+}
+
+.toolbar-title {
+    padding: 0 2.5rem;
+    background: #E5E7EB;
+}
+
+.toolbar-actions {
+    padding: 0 2.5rem;
 }

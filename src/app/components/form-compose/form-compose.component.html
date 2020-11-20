@@ -1,23 +1,23 @@
-<form [formGroup]="formGroup">
+<form [formGroup]="formGroup" class="container">
     <ng-container
         *ngFor="let control of formControlConfigs"
     >
         <div
             class="form-group"
-            [ngSwitch]="control.controlType">
+            [ngSwitch]="control?.controlType">
             <app-textbox
-                *ngSwitchCase="'textbox'"
-                [key]="control.key"
-                [label]="control.label"
+                *ngSwitchCase="formControlTypes.Inputbox"
+                [key]="control?.key"
+                [label]="control?.label"
                 [group]="formGroup"
-                [inputType]="control.inputType"
+                [inputType]="control?.inputType"
             >
             </app-textbox>
 
             <app-chips
-                *ngSwitchCase="'chips'"
-                [key]="control.key"
-                [label]="control.label"
+                *ngSwitchCase="formControlTypes.Chips"
+                [key]="control?.key"
+                [label]="control?.label"
                 [group]="formGroup"
             >
             </app-chips>

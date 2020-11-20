@@ -1,11 +1,12 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnDestroy, OnInit, ViewChild } from '@angular/core';
 import { FormGroup } from '@angular/forms';
 import { Store } from '@ngrx/store';
-import { FriendState, addFriend } from '@friend-archive/state';
+import { FriendState, AddFriendAction, getFriendsList } from '@friend-archive/state';
 import { Person } from '@models';
 import { FormConfigService } from './form-config.service';
-import { FormControlConfig } from '@components';
-import { Observable } from 'rxjs';
+import { FormComposeComponent, FormControlConfig } from '@components';
+import { Observable, Subject } from 'rxjs';
+import { takeUntil } from 'rxjs/operators';
 
 @Component({
   selector: 'app-add-friend',
@@ -15,8 +16,11 @@ import { Observable } from 'rxjs';
     FormConfigService
   ]
 })
-export class AddFriendComponent implements OnInit {
+export class AddFriendComponent implements OnInit, OnDestroy {
   formControlConfig$: Observable<FormControlConfig[]>;
+  @ViewChild(FormComposeComponent) form: FormComposeComponent;
+  private stopSubscription = new Subject();
+
   constructor(
     private store: Store<FriendState>,
     private formConfigService: FormConfigService,
@@ -26,6 +30,16 @@ export class AddFriendComponent implements OnInit {
     // TODO This can be a plain object
     this.formControlConfig$ =
       this.formConfigService.getFormConfig();
+
+    this.store.select(getFriendsList)
+      .pipe(
+        takeUntil(this.stopSubscription),
+      )
+      .subscribe(() => {
+        if (this.form && this.form.formGroup) {
+          this.form.formGroup.reset();
+        }
+      });
   }
 
   addPerson(formGroup: FormGroup): void {
@@ -35,10 +49,13 @@ export class AddFriendComponent implements OnInit {
     }
 
     this.store.dispatch(
-      addFriend(
+      new AddFriendAction(
         {friend: formGroup.value as Person}
       )
     );
-    formGroup.reset();
+  }
+
+  ngOnDestroy(): void {
+    this.stopSubscription.next();
   }
 }

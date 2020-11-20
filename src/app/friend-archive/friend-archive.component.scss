@@ -3,15 +3,41 @@
     flex-direction: row;
 }
 
-.form {
+.form-section {
     width: 30vw;
     height: 100vh;
-    border: 1px solid black;
+    border-right: 1px dashed #A78BFA;
 }
 
-.chart {
+.chart-section {
     width: 70vw;
     height: 100vh;
-    border: 1px solid black;
 }
 
+.banner {
+    display: grid;
+    place-items: center;
+    padding: 25px;
+    
+    &__first {
+
+    }
+
+    &__second {
+    
+    }
+}
+
+.banner-primary {
+    font-size: 42px;
+    margin-top: 25px;
+}
+
+.banner-secondary {
+    font-size: 20px;
+}
+
+.toolbar-title {
+    padding: 0 2.5rem;
+    background: #E5E7EB;
+}

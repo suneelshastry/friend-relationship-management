@@ -6,8 +6,8 @@ import { MatChipInputEvent } from '@angular/material/chips';
 @Component({
     selector: 'app-chips',
     template: `
-        <mat-form-field [formGroup]="group">
-        <mat-label>{{label + ' *'}}</mat-label>
+        <mat-form-field [formGroup]="group" class="form-element">
+            <mat-label>{{label + ' *'}}</mat-label>
             <mat-chip-list #chipList [formControl]="formControl">
                 <mat-chip
                     *ngFor="let item of formControl.value"
@@ -43,7 +43,8 @@ import { MatChipInputEvent } from '@angular/material/chips';
                 </mat-option>
             </mat-autocomplete>
         </mat-form-field>
-    `
+    `,
+    styles: ['.form-element {width: 100%}']
 })
 /**
  * Wrapper for Angular material chip component

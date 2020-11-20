@@ -19,7 +19,7 @@ export class FriendArchiveComponent implements OnInit {
 
   constructor(
     private mapService: MapService,
-    private store: Store<FriendState>
+    private store: Store<FriendState>,
   ) { }
 
   ngOnInit(): void {

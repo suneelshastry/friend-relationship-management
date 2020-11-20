@@ -1,6 +1,9 @@
 import { Component, Input, OnInit } from '@angular/core';
 import { FormGroup } from '@angular/forms';
-import { FormControlConfig } from '../form-controls/form-control-config';
+import {
+  FormControlConfig,
+  FormControlTypes,
+} from '../form-controls/form-control-config';
 import { FormComposeService } from './form-compose.service';
 
 @Component({
@@ -11,6 +14,8 @@ import { FormComposeService } from './form-compose.service';
 export class FormComposeComponent implements OnInit {
   @Input() formControlConfigs: FormControlConfig[];
   formGroup: FormGroup;
+  formControlTypes = FormControlTypes;
+
   constructor(
     private formComposeService: FormComposeService
   ) { }

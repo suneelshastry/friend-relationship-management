@@ -1,19 +1,24 @@
-<div class="outer">
-    <h2>Add person details</h2>
+<mat-toolbar class="toolbar-title">
+    <h1>Add friend details</h1>
+</mat-toolbar>
+
+<section>
     <div>
         <app-form-compose 
             #addFriend
             [formControlConfigs]="formControlConfig$ | async"
         ></app-form-compose>
     </div>
-    <div>
-        <button 
-            mat-button
-            (click)="addPerson(addFriend.formGroup)"
-        >Add person</button>
-        <button
-            mat-button
-            (click)="addFriend.formGroup.reset()"
-        >Reset</button>
-    </div>
-</div>
+</section>
+
+<mat-toolbar class="toolbar-actions">
+    <span class="spacer"></span>
+    <button
+        mat-button color="primary"
+        (click)="addFriend.formGroup.reset()"
+    >Reset</button>
+    <button 
+        (click)="addPerson(addFriend.formGroup)"
+        mat-flat-button color="primary"
+    >Add person</button>
+</mat-toolbar>

@@ -1,6 +1,11 @@
 import { Injectable } from '@angular/core';
 import { Observable, of } from 'rxjs';
-import { FormControlConfig } from '@components';
+import {
+  FormControlConfig,
+  FormControlTextbox,
+  FormControlChips,
+  FormControlTypes,
+} from '@components';
 import { Validators } from '@angular/forms';
 
 @Injectable()
@@ -9,48 +14,48 @@ export class FormConfigService {
   getFormConfig(): Observable<FormControlConfig[]> {
     return of([
       {
-        controlType: 'textbox',
-        label: 'Name',
-        key: 'name',
-        value: '',
-        order: 1,
-        inputType: 'text',
-        validators: [
-          Validators.required
-        ]
-      },
+        controlType: FormControlTypes.Inputbox,
+            label: 'Name',
+            key: 'name',
+            value: '',
+            order: 1,
+            inputType: 'text',
+            validators: [
+              Validators.required
+            ]
+      } as FormControlTextbox,
       {
-        controlType: 'chips',
+        controlType: FormControlTypes.Chips,
         label: 'Friends',
         key: 'friends',
         value: [ ],
         order: 2,
         validators: [
-          Validators.required
+          Validators.required,
         ]
-      },
+      } as FormControlChips,
       {
-        controlType: 'textbox',
+        controlType: FormControlTypes.Inputbox,
         label: 'Age',
         key: 'age',
-        value: '',
+        value: 0,
         order: 3,
         inputType: 'number',
         validators: [
           Validators.required
         ]
-      },
+      } as FormControlTextbox,
       {
-        controlType: 'textbox',
+        controlType: FormControlTypes.Inputbox,
         label: 'Weight',
         key: 'weight',
-        value: '',
+        value: 0,
         order: 4,
         inputType: 'number',
         validators: [
           Validators.required
         ]
-      }
+      } as FormControlTextbox
     ]);
   }
 }

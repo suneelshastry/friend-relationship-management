@@ -1,0 +1,15 @@
+.directed-graph {
+    display: grid;
+    place-items: center;
+    animation-name: initial;
+    animation-duration: 1.2s;
+}
+
+@keyframes initial {
+    from { 
+        transform: scale(0);
+    }
+    to {
+        transform: scale(1);
+    }
+}
