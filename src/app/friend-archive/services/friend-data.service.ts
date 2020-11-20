@@ -16,8 +16,8 @@ export class FriendDataService {
   }
 
   addNewFriend(friend: Person): Observable<Person | Error> {
-    if (this.friendsRepo.findIndex((i) => i.name === friend.name) > -1) {
-      return throwError(new Error('Friend already exists'));
+    if (this.friendsRepo.findIndex((i) => i.name === friend.name.trim()) > -1) {
+      return throwError(new Error('Friend entry already exists'));
     }
     this.friendsRepo.push({
       ...friend,

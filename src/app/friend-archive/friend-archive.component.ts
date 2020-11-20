@@ -4,7 +4,7 @@ import { MapService } from '@friend-archive/services/map.service';
 import { FriendState, getFriendsList } from '@friend-archive/state';
 import { NetworkChartData } from '@components';
 import { switchMap } from 'rxjs/operators';
-import { Observable } from 'rxjs';
+import { Observable, of } from 'rxjs';
 
 @Component({
   selector: 'app-friend-archive',

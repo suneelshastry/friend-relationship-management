@@ -58,7 +58,7 @@ export class FormConfigService {
           Validators.max(1000),
           Validators.min(0),
         ],
-        suffix: 'Kg',
+        suffix: 'kg',
         required: true,
       } as FormControlTextbox,
     ]);

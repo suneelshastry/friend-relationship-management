@@ -20,14 +20,14 @@ export class MapService {
       const personMap = new Map<string, number>();
 
       friendsList.forEach((person) => {
-        const personName = person.name.toLowerCase().trim();
+        const personName = person.name.trim();
         if (!personMap.has(personName)) {
           personMap.set(personName, index);
           index = index + 1;
         }
 
         person.friends.forEach((friend) => {
-          const friendName = friend.toLowerCase().trim();
+          const friendName = friend.trim();
           if (!personMap.has(friendName)) {
             personMap.set(friendName, index);
             index = index + 1;

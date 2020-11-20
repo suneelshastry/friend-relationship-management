@@ -17,6 +17,6 @@ export const addFriendSuccess = createAction(
 );
 
 export const addFriendFailure = createAction(
-  '[Add Friend]Add friend completed',
+  '[Add Friend]Add friend failed',
   props<{ error: string }>()
 );

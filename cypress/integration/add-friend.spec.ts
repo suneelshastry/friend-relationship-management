@@ -3,8 +3,8 @@ import { FriendWorkflow } from './workflows/add-friend';
 describe('Add-friend e2e tests', () => {
   it('Should load add-friends page', () => {
     cy.visit('/');
-    cy.contains('Add friend details');
-    cy.contains('Your friend network');
+    cy.contains('Add Friend Details');
+    cy.contains('Your Friends Network');
   });
 
   it('should add friends upon valid input', () => {
