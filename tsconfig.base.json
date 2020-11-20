@@ -19,7 +19,8 @@
     "paths": {
       "@models": ["src/app/models/index.ts"],
       "@friend-archive/*": ["src/app/friend-archive/*"],
-      "@components": ["src/app/components/index.ts"]
+      "@components": ["src/app/components/index.ts"],
+      "@constants": ["src/app/constants/index.ts"]
     }
   }
 }

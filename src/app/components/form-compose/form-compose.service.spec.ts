@@ -32,11 +32,11 @@ describe('FormComposeService', () => {
     service = TestBed.inject(FormComposeService);
   });
 
-  xit('should be created', () => {
+  it('should be created', () => {
     expect(service).toBeTruthy();
   });
 
-  xit('Should build form-group per config', () => {
+  it('Should build form-group per config', () => {
       const formGroup = service.buildFormGroup(formConfig);
       const controls = Object.keys(formGroup.controls);
 
@@ -47,7 +47,7 @@ describe('FormComposeService', () => {
         .toBe(formConfig[0].key);
   });
 
-  xit('Should throw error when key is repeated', () => {
+  it('Should throw error when key is repeated', () => {
       formConfig.push(formConfig[0]);
       expect(() => service.buildFormGroup(formConfig))
         .toThrowError();

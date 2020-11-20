@@ -1,9 +1,7 @@
 export {
-    FriendActionTypes,
-    FriendAction,
-    AddFriendAction,
-    AddFriendSuccessAction,
-    AddFriendFailureAction
+    addFriendFailure,
+    addFriend,
+    addFriendSuccess
 } from './friend.actions';
 export {
     State,

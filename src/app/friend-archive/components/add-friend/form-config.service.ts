@@ -42,8 +42,11 @@ export class FormConfigService {
         order: 3,
         inputType: 'number',
         validators: [
-          Validators.required
-        ]
+          Validators.required,
+          Validators.max(150),
+          Validators.min(0),
+        ],
+        suffix: 'years'
       } as FormControlTextbox,
       {
         controlType: FormControlTypes.Inputbox,
@@ -53,8 +56,11 @@ export class FormConfigService {
         order: 4,
         inputType: 'number',
         validators: [
-          Validators.required
-        ]
+          Validators.required,
+          Validators.max(1000),
+          Validators.min(0),
+        ],
+        suffix: 'Kg'
       } as FormControlTextbox
     ]);
   }

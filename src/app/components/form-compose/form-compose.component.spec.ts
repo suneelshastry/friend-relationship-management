@@ -1,6 +1,10 @@
-import { async, ComponentFixture, TestBed } from '@angular/core/testing';
+import {
+  async,
+  ComponentFixture,
+  TestBed
+} from '@angular/core/testing';
 import { FormGroup, Validators } from '@angular/forms';
-import { By } from '@angular/platform-browser';
+
 import {
   FormControlConfig,
   FormControlTextbox,
@@ -49,11 +53,11 @@ describe('FormComposeComponent', () => {
     fixture.detectChanges();
   });
 
-  xit('should create', () => {
+  it('should create', () => {
     expect(component).toBeTruthy();
   });
 
-  xit('should create form controls dynamically', () => {
+  it('should create form controls dynamically', () => {
     component.formControlConfigs = formConfig;
     component.ngOnInit();
 

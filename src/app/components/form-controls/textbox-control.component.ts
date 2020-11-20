@@ -16,6 +16,12 @@ import { FormGroup } from '@angular/forms';
                 [type]="inputType"
                 [class]="key"
             >
+            <span
+                matSuffix
+                *ngIf="suffix"
+            >
+                <strong>{{suffix}}</strong>
+            </span>
         </mat-form-field>
     `,
     styles: ['.form-element {width: 100%}']
@@ -28,4 +34,5 @@ export class FormTextboxComponent {
     @Input() key: string;
     @Input() group: FormGroup;
     @Input() inputType: string;
+    @Input() suffix: string;
 }

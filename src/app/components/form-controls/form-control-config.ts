@@ -22,6 +22,7 @@ export interface FormControlConfig {
 export interface FormControlTextbox extends FormControlConfig {
     inputType?: string;
     value?: string|number;
+    suffix?: string;
 }
 
 export interface FormControlChips extends FormControlConfig {

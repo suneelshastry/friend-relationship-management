@@ -1,10 +1,11 @@
 import { Person } from '@models';
-import * as AppState from '../../state/app.reducer';
-import { FriendAction, FriendActionTypes } from './friend.actions';
 import {
+    createReducer, on,
     createSelector,
-    createFeatureSelector,
+    createFeatureSelector
 } from '@ngrx/store';
+import * as AppState from '../../state/app.reducer';
+import * as FriendActions from './friend.actions';
 
 export interface State extends AppState.State {
     friends: FriendState;
@@ -20,28 +21,29 @@ const initialState: FriendState = {
     error: null,
 };
 
-export function friendReducer(
-    state: FriendState = initialState,
-    action: FriendAction
-): FriendState {
-    switch (action.type) {
-        case FriendActionTypes.AddFriendSuccess:
+export const friendReducer = createReducer(
+    initialState,
+    on(FriendActions.addFriendSuccess,
+        (state, action): FriendState => {
             return {
                 ...state,
                 friends: [
                     ...state.friends,
-                    action.payload.friend,
-                ]
+                    action.friend
+                ],
             };
-        case FriendActionTypes.AddFriendFailure:
+    }),
+    on(FriendActions.addFriendFailure,
+        (state, action): FriendState => {
             return {
                 ...state,
-                error: action.payload.error,
+                error: action.error
             };
-        default: return state;
-    }
-}
+        }
+    )
+);
 
+// TODO extract dangling string to a constant
 const getFriendStateSelector =
     createFeatureSelector<FriendState>('friends');
 

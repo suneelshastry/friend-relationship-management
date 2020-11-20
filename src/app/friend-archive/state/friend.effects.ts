@@ -1,10 +1,9 @@
 import { Injectable } from '@angular/core';
 import { Actions, ofType, Effect } from '@ngrx/effects';
 import {
-    AddFriendAction,
-    AddFriendFailureAction,
-    AddFriendSuccessAction,
-    FriendActionTypes
+    addFriend,
+    addFriendSuccess,
+    addFriendFailure,
 } from './friend.actions';
 import { FriendDataService } from '../services/friend-data.service';
 import { mergeMap, map, catchError } from 'rxjs/operators';
@@ -29,16 +28,16 @@ export class FriendEffects {
     @Effect()
     addFriend$ = this.actions$
         .pipe(
-            ofType<AddFriendAction>(FriendActionTypes.AddFriend),
+            ofType<ReturnType<typeof addFriend>>(addFriend.type),
             mergeMap((action) =>
-                this.friendDataService.addNewFriend(action.payload.friend
+                this.friendDataService.addNewFriend(action.friend
             ).pipe(
                 map((newFriend) => {
-                    return (new AddFriendSuccessAction({friend: newFriend}));
+                    return (addFriendSuccess({friend: newFriend}));
                 }),
                 catchError((err: Error) => {
                     this.showError(err.message);
-                    return of(new AddFriendFailureAction({error: err.message}));
+                    return of(addFriendFailure({error: err.message}));
                 })
             )
         )
